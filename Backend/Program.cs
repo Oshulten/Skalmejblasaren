@@ -1,11 +1,14 @@
+
+using Dapper;
+using Npgsql;
+
+
 const string applicationTitle = "TemplateApi";
 const string version = "v1";
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddUserSecrets<Program>();
-
-builder.Services.AddSignalR();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
