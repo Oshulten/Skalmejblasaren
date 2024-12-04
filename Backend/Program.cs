@@ -1,17 +1,9 @@
-using NSwag.AspNetCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Backend.Database;
-using Backend.Hubs;
-
 const string applicationTitle = "TemplateApi";
 const string version = "v1";
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddUserSecrets<Program>();
-builder.Services.AddDbContext<TemplateDatabaseContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddSignalR();
 builder.Services.AddControllers();
@@ -49,11 +41,7 @@ app.UseCors(options =>
 
 app.UseHttpsRedirection();
 
-// app.UseAuthentication();
-// app.UseAuthorization();
-
 app.MapControllers();
-app.MapHub<NotificationHub>("/notifications");
 
 app.Run();
 public partial class Program { }
